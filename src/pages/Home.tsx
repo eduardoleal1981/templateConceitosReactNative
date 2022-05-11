@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-
+ 
 import { Header } from '../components/Header';
 import { Task, TasksList } from '../components/TasksList';
 import { TodoInput } from '../components/TodoInput';
@@ -17,7 +17,14 @@ export function Home() {
   }
 
   function handleToggleTaskDone(id: number) {
-    //TODO - toggle task done if exists
+    const updatedTasks = tasks.map(task => ({ ...task }))
+    updatedTasks.forEach(element => {
+      if (element.id === id){ 
+        element.done = !element.done;
+        return;
+      }
+    })
+    setTasks(updatedTasks);
   }
 
   function handleRemoveTask(id: number) {
